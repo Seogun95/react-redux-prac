@@ -1,15 +1,38 @@
-import { useSelector } from 'react-redux';
-import './App.css';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-function App() {
+const App = () => {
+  //store에 접근
   const data = useSelector((state) => {
-    return state;
+    return state.counter;
   });
 
-  console.log('counter ->', data.counter.number);
-  console.log('user ->', data.users.userId);
+  //Dispatch 가져오기
+  const dispatch = useDispatch();
 
-  return <></>;
-}
+  //카운트 증가 함수
+  const countUpHandler = () => {
+    dispatch({
+      type: 'PLUS_ONE',
+    });
+  };
+
+  //카운트 감소 함수
+  const countDownHandler = () => {
+    dispatch({
+      type: 'MINUS_ONE',
+    });
+  };
+
+  return (
+    <>
+      <div>
+        <h1>현재 카운트: {data.number}</h1>
+        <button onClick={countUpHandler}>+</button>
+        <button onClick={countDownHandler}>-</button>
+      </div>
+    </>
+  );
+};
 
 export default App;
