@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'; // Provider import
+//주의: 반드시 config에서 가져와야 한다. 정확한 경로 필수
+//tip: export default로 작성했을때는 import시 { store }로 작성하면 안된다.
+import store from './redux/config/configStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //Provider:
+  //스토어에서 만들어놓은 중앙데이터 관리소를 App 컴포넌트 하부에서 스토어를 가능하게 해줌
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
